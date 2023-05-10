@@ -1,0 +1,17 @@
+{
+  "profileName": "Wingman",
+  "jobId": "6c81a672-3053-451c-a9ff-133c236fa87a",
+  "projectId": "32114.655977295504",
+  "time": "2023-04-07T08:16:43.568Z",
+  "log": [
+    "Creating Azure resources...",
+    "Checking the Existence of the Resource Group ...",
+    "Creating Resource Group ...",
+    "> Creating App Registration ...",
+    "Start to add password for App, Id : be85e175-025e-4544-b819-2129741543a6",
+    "> Create App Registration Success! ID: be85e175-025e-4544-b819-2129741543a6",
+    "Deploying Web App Resource ...",
+    "Deploying Bot Resource ...",
+    "Provisioning completed successfully!"
+  ]
+}

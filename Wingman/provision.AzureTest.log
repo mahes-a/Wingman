@@ -1,0 +1,17 @@
+{
+  "profileName": "AzureTest",
+  "jobId": "ac9cb21a-6c95-4567-b095-f27917cba52e",
+  "projectId": "32114.655977295504",
+  "time": "2023-04-20T23:53:12.311Z",
+  "log": [
+    "Creating Azure resources...",
+    "Checking the Existence of the Resource Group ...",
+    "Creating Resource Group ...",
+    "> Creating App Registration ...",
+    "Start to add password for App, Id : 2ff15445-12d8-4bbf-929c-3453d3ee0205",
+    "> Create App Registration Success! ID: 2ff15445-12d8-4bbf-929c-3453d3ee0205",
+    "Deploying Web App Resource ...",
+    "Deploying Bot Resource ...",
+    "Provisioning completed successfully!"
+  ]
+}

@@ -1,0 +1,108 @@
+[import](common.lg)
+
+# SendActivity_Greeting()
+[Activity
+    Text = ${SendActivity_Greeting_text()}
+]
+
+# SendActivity_Greeting_text()
+- Welcome to your OpenAI ChatGPT 3.5 Powered AI Bot. Please ask your questions
+
+# SendActivity_CQtT8j()
+[Activity
+    Text = ${SendActivity_CQtT8j_text()}
+]
+
+# SendActivity_CQtT8j_text()
+- Sorry , Bot is facing technical difficulties. Please try again later
+# SendActivity_NovWCs()
+[Activity
+    Text = ${SendActivity_NovWCs_text()}
+]
+
+# SendActivity_NovWCs_text()
+- ${dialog.openaianswer}
+# SendActivity_qiAc2u()
+[Activity
+    Text = ${SendActivity_qiAc2u_text()}
+]
+
+# SendActivity_qiAc2u_text()
+- ${dialog.substrval}
+# SendActivity_hWO6W8()
+[Activity
+    Text = ${SendActivity_hWO6W8_text()}
+]
+
+# SendActivity_hWO6W8_text()
+- ${Conversation.count}
+# SendActivity_KY3PRD()
+[Activity
+    Text = ${SendActivity_KY3PRD_text()}
+]
+
+# SendActivity_KY3PRD_text()
+- ${Conversation.totalresponse}
+# SendActivity_ylIQHC()
+[Activity
+    Text = ${SendActivity_ylIQHC_text()}
+]
+
+# SendActivity_ylIQHC_text()
+- ${Conversation.totalresponse}
+# SendActivity_uUTkio()
+[Activity
+    Text = ${SendActivity_uUTkio_text()}
+]
+
+# SendActivity_uUTkio_text()
+- ${dialog.cleanedjson}
+# SendActivity_ZaHygr()
+[Activity
+    Text = ${SendActivity_ZaHygr_text()}
+]
+
+# SendActivity_ZaHygr_text()
+- ${dialog.queryresult}
+# SendActivity_g22NVB()
+[Activity
+    Text = ${SendActivity_g22NVB_text()}
+]
+
+# SendActivity_g22NVB_text()
+- ${dialog.responseasJson.content.choices[0].message.content}
+# SendActivity_7AZ2nv()
+[Activity
+    Text = ${SendActivity_7AZ2nv_text()}
+]
+
+# SendActivity_7AZ2nv_text()
+- ${dialog.valtest}
+# SendActivity_FyQerW()
+[Activity
+    Text = ${SendActivity_FyQerW_text()}
+]
+
+# SendActivity_FyQerW_text()
+- ${dialog.queryresult}
+# SendActivity_OUB4Ia()
+[Activity
+   Type = Typing
+]
+
+# SendActivity_OUB4Ia_text()
+- Fetching Response.......
+# SendActivity_CFgNvP()
+[Activity
+    Text = ${SendActivity_CFgNvP_text()}
+]
+
+# SendActivity_CFgNvP_text()
+- ${div(length(Conversation.totalresponse), 4)}
+# SendActivity_JfgWUk()
+[Activity
+    Text = ${SendActivity_JfgWUk_text()}
+]
+
+# SendActivity_JfgWUk_text()
+- Fetching Response...

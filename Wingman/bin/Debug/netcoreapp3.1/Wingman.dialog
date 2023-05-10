@@ -1,0 +1,413 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "name": "Wingman",
+    "description": "",
+    "id": "A79tBe"
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720",
+        "comment": "This trigger runs when a conversation update activity is sent to the bot. This indicates a user or bot being added or removed from a conversation."
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.Foreach",
+          "$designer": {
+            "id": "518944",
+            "name": "Loop: for each item",
+            "comment": "For each member added to the conversation."
+          },
+          "itemsProperty": "turn.Activity.membersAdded",
+          "actions": [
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "641773",
+                "name": "Branch: if/else",
+                "comment": "Checks that that member added ID does not match the bot ID. This prevents the greeting message from being sent when the bot is added to a conversation."
+              },
+              "condition": "=string(dialog.foreach.value.id) != string(turn.Activity.Recipient.id)",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SendActivity",
+                  "$designer": {
+                    "id": "859266",
+                    "name": "Send a response"
+                  },
+                  "activity": "${SendActivity_Greeting()}"
+                }
+              ]
+            }
+          ],
+          "value": "dialog.foreach.value"
+        }
+      ]
+    },
+    {
+      "$kind": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "mb2n1u",
+        "comment": "This trigger fires when an incoming activity is not handled by any other trigger."
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "muE1f1"
+          },
+          "property": "Conversation.count",
+          "value": "=add(int(Conversation.count),1)"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "yiKwQo"
+          },
+          "property": "dialog.userquestion",
+          "value": "=turn.activity.text",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "pnL8re"
+          },
+          "property": "Conversation.key",
+          "value": "=settings.OPENAI_API_KEY"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "T8rD2I"
+          },
+          "value": "=settings.OPENAI_API_ENDPOINT",
+          "property": "Conversation.Endpoint"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "JfgWUk"
+          },
+          "activity": "${SendActivity_JfgWUk()}"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "OUB4Ia"
+          },
+          "activity": "${SendActivity_OUB4Ia()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "CFgNvP"
+          },
+          "activity": "${SendActivity_CFgNvP()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "90VZJs"
+          },
+          "property": "dialog.userquestion",
+          "value": "=replace(replace(replace(replace(turn.activity.text, ' \\ ', '\\\\'), '\"', '\\\"'), ' ', '\\r'), ' ', '\\n')"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "6z0s84"
+          },
+          "property": "dialog.json",
+          "value": "=concat(' {\"content\": \"', trim(dialog.userquestion), '\",\"role\": \"user\"} , ')"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "3Ia5Ek"
+          },
+          "property": "Conversation.totalresponse",
+          "value": "=concat(Conversation.totalresponse,dialog.json)"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ylIQHC"
+          },
+          "activity": "${SendActivity_ylIQHC()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "sKFYcL"
+          },
+          "condition": "Conversation.count==8",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "gzoMfl"
+              },
+              "assignments": [
+                {
+                  "property": "Conversation.totallen",
+                  "value": "=length(Conversation.totalresponse)"
+                },
+                {
+                  "property": "Conversation.removelen",
+                  "value": "=sub(length(Conversation.firstrecord),1)"
+                },
+                {
+                  "property": "Conversation.remlen",
+                  "value": "=sub(Conversation.totallen, Conversation.removelen)"
+                },
+                {
+                  "property": "Conversation.totalresponse",
+                  "value": "=substring(Conversation.totalresponse, Conversation.removelen, Conversation.remlen)"
+                },
+                {
+                  "property": "Conversation.count",
+                  "value": "=0"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "hWO6W8"
+          },
+          "activity": "${SendActivity_hWO6W8()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "KY3PRD"
+          },
+          "activity": "${SendActivity_KY3PRD()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "XYWpPP"
+          },
+          "property": "dialog.systemmessage",
+          "value": "='{\"role\":\"system\",\"content\":\"You are an AI assistant that helps people find information.\"}, '"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "1gPK4Z"
+          },
+          "property": "dialog.bodycon",
+          "value": "=concat('{\"frequency_penalty\": 0,\"max_tokens\": 350,\"messages\":','[', dialog.systemmessage, trim(Conversation.totalresponse),']',', ','\"presence_penalty\": 0,\"stop\": null,\"temperature\": 0.7,\"top_p\": 0.95}')"
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "xhimRE"
+          },
+          "property": "dialog.cleanedjson",
+          "value": "=json(replace(dialog.bodycon, ',]', ']'))"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "uUTkio"
+          },
+          "activity": "${SendActivity_uUTkio()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "zjd2OX"
+          },
+          "resultProperty": "dialog.queryresult",
+          "method": "POST",
+          "headers": {
+            "api-key": "=Conversation.key"
+          },
+          "contentType": "application/json",
+          "responseType": "json",
+          "body": "=dialog.cleanedjson",
+          "url": "=Conversation.Endpoint"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "ZaHygr"
+          },
+          "activity": "${SendActivity_ZaHygr()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "Fez6g2"
+          },
+          "property": "dialog.responseasJson",
+          "value": "=json(dialog.queryresult)"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "g22NVB"
+          },
+          "activity": "${SendActivity_g22NVB()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.SetProperty",
+          "$designer": {
+            "id": "PIp4br"
+          },
+          "property": "dialog.valrep",
+          "value": "=replace(replace(replace(replace(dialog.responseasJson.content.choices[0].message.content, ' \\ ', '\\\\'), '\"', '\\\"'), ' ', '\\r'), ' ', '\\n')"
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "7AZ2nv"
+          },
+          "activity": "${SendActivity_7AZ2nv()}",
+          "disabled": true
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "e0JzKp"
+          },
+          "condition": "dialog.queryresult.statusCode==200",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "CQtT8j"
+              },
+              "activity": "${SendActivity_CQtT8j()}"
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "FyQerW"
+              },
+              "activity": "${SendActivity_FyQerW()}",
+              "disabled": true
+            }
+          ],
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "y2R77G"
+              },
+              "property": "dialog.openaianswer",
+              "value": "=dialog.queryresult.content.choices[0].message.content"
+            },
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "ADOnWr"
+              },
+              "property": "dialog.systemjson",
+              "value": "=concat(' {\"content\": \"', trim(dialog.openaianswer), '\",\"role\": \"assistant\"} , ')",
+              "disabled": true
+            },
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "ORFOpW"
+              },
+              "property": "dialog.systemjson",
+              "value": "=concat(' {\"content\": \"', trim(dialog.valrep), '\",\"role\": \"assistant\"} , ')"
+            },
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "GAu6BA"
+              },
+              "property": "Conversation.totalresponse",
+              "value": "=concat(Conversation.totalresponse,dialog.systemjson)"
+            },
+            {
+              "$kind": "Microsoft.IfCondition",
+              "$designer": {
+                "id": "xctMaV"
+              },
+              "condition": "Conversation.count==1",
+              "actions": [
+                {
+                  "$kind": "Microsoft.SetProperty",
+                  "$designer": {
+                    "id": "qKYTdf"
+                  },
+                  "property": "Conversation.firstrecord",
+                  "value": "=concat(Conversation.totalresponse,' ,')"
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.SetProperty",
+              "$designer": {
+                "id": "29Ckfk"
+              },
+              "property": "dialog.templen",
+              "value": "=sub(length(Conversation.firstrecord),1)",
+              "disabled": true
+            },
+            {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "p9WVAD"
+              },
+              "assignments": [
+                {
+                  "property": "dialog.temptotallen",
+                  "value": "=length(Conversation.totalresponse)"
+                },
+                {
+                  "property": "dialog.tempremlen",
+                  "value": "=sub(dialog.temptotallen, dialog.templen)"
+                },
+                {
+                  "property": "dialog.substrval",
+                  "value": "=substring(Conversation.totalresponse, dialog.templen, dialog.tempremlen)"
+                }
+              ],
+              "disabled": true
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "qiAc2u"
+              },
+              "activity": "${SendActivity_qiAc2u()}",
+              "disabled": true
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "NovWCs"
+              },
+              "activity": "${SendActivity_NovWCs()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "Wingman.lg",
+  "id": "Wingman",
+  "recognizer": "Wingman.lu.qna"
+}
