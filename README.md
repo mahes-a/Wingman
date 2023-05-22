@@ -3,7 +3,7 @@ Azure Open AI Virtual chat Assistant that can be deployed in multiple channels l
 
 ## Azure Architecture ##
 
-![image](https://github.com/mahes-a/Wingman/assets/120069348/697e719e-6d38-4833-bb7c-e3ea0e0ccd04)
+![image](https://github.com/mahes-a/Wingman/assets/120069348/c245b468-3d1e-4a2f-ab7b-47b6e4dc48e5)
 
 ## Getting Started ##
 
@@ -13,7 +13,8 @@ Azure Open AI Virtual chat Assistant that can be deployed in multiple channels l
 
 1. In Azure Open AI Create a GPT 3.5 deployment 
 
-    <img width="703" alt="image" src="https://github.com/mahes-a/Wingman/assets/120069348/44420fbb-1afa-4aa5-a55f-425d79f52202">
+   <img width="864" alt="image" src="https://github.com/mahes-a/Wingman/assets/120069348/dd9b5f1e-7ee2-47aa-9ade-bd2c750ffa62">
+
 
 
 2. Install Bot Composer [here](https://learn.microsoft.com/en-us/composer/install-composer?tabs=windows).
@@ -26,11 +27,12 @@ Azure Open AI Virtual chat Assistant that can be deployed in multiple channels l
 
 4. Update the appsettings.json file in Wingman\Wingman\settings to include the OPENAI_API_KEY and OPENAI_API_ENDPOINT
 
- <img width="200" alt="image" src="https://github.com/mahes-a/Wingman/assets/120069348/2b749da4-3d54-4a9e-9b7a-f393307e48fb">
+ <img width="189" alt="image" src="https://github.com/mahes-a/Wingman/assets/120069348/62fac7a7-2a61-4aab-9587-1dbf98886ecc">
+
 
    The OPENAI_API_KEY and endpoint can be retrieved from Azure Portal Azure OpenAI resource under Keys and Endpoint section
     
-  <img width="699" alt="image" src="https://github.com/mahes-a/Wingman/assets/120069348/4185efc8-7b3e-428b-8205-fe7681986912">
+  <img width="620" alt="image" src="https://github.com/mahes-a/Wingman/assets/120069348/646b0ebf-bf99-45cd-bc90-ee0fcf384b1c">
     
    The OPENAI_API_ENDPOINT should be combination of your Azure Open AI Endpoint followed by ChatGPT deployment name followed by the api version 
     
@@ -41,7 +43,8 @@ Azure Open AI Virtual chat Assistant that can be deployed in multiple channels l
    https://youropenai.openai.azure.com/openai/deployments/chatgpt35/chat/completions?api-version=2023-03-15-preview
    
    Open the Project from Bot Composer
-   <img width="779" alt="image" src="https://github.com/mahes-a/Wingman/assets/120069348/fb0e2f29-16dc-4e86-8fca-97660ac3eb54">
+    <img width="810" alt="image" src="https://github.com/mahes-a/Wingman/assets/120069348/f28ac610-1599-41fa-b73f-89fcdf4ae399">
+
   
 ### Publish
 5. Publish the Bot to Azure from bot composer [refer here](https://learn.microsoft.com/en-us/composer/how-to-publish-bot?tabs=v2x)
